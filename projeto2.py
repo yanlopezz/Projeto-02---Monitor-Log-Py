@@ -1,0 +1,73 @@
+import random
+import datetime
+
+def menu():
+    nome_arq = 'log txt'
+    while True:
+        print('-' * 15)
+        print('Monitor LogPy')
+        print('-' * 15)
+        print('1 Gerar logs\n2 - Analisar logs \n3 - Gerar e analisar logs \n4 - sair')
+        opcao = input('Escolha uma opção: ')
+
+        if opcao == '1':
+            try:
+                qtd = int(input('Quantidade de logs'))
+                gerarArquivo(nome_arq, qtd)
+            except:
+                print('Quantidade incorreta')
+        elif opcao == '2':
+            analisarLog(nome_arq)
+        elif opcao == '3':
+            try:
+                qtd = int(input('Quantidade de logs'))
+                gerarArquivo(nome_arq, qtd)
+                analisarLog(nome_arq)
+            except:
+                print('Quantidade incorreta')
+        elif opcao == '4':
+            print('Até mais')
+            break
+        else:
+            print('Opção errada')
+
+def gerarArquivo(nome_arq, qtd):
+    with open(nome_arq, 'w', enconding= 'UTF-8') as arq:
+         for i in range(qtd):
+            arq.write(montarlog(i) + '\n')
+         print('Logs gerados')
+
+def montarlog(i):
+    data = gerarDataHora(i)
+    ip = gerarIp(i)
+    recurso = gerarRecurso (i)
+    metodo = gerarMetodo(i)
+    status = gerarStatus (i)
+    tempo = gerarTempo (i)
+    agente = gerarAgente(i)
+    return f'[{data}] {ip} - {metodo} - {status} - {recurso} - {tempo}ms - 500mb - HTTP/1.1 - {agente} - /home'
+
+def gerarDataHora(i):
+    base = datetime.datetime(2026, 3, 30, 22,8,0)
+    data = datetime.timedelta(seconds=i * random.randint(5,20))
+    return (base + data.stftime)('%d,%m/%Y %H:%M:%S')
+
+def gerarIp(i):
+    r = random.randint(1,6)
+
+    if i >= 20 and i <= 30:
+        return '200.1.123.345'
+    
+    if r == 1:
+        return '192.658.9.4'
+    if r == 2:
+        return '192.688.7.5'
+    if r == 3:
+        return '192.659.5.6'
+    if r == 4:
+        return '192.658.9.7'
+    if r == 5:
+        return '192.638.9.8'
+    else:
+        return '192.658.9.49'
+    
