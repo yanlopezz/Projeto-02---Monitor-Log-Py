@@ -55,19 +55,63 @@ def gerarDataHora(i):
 def gerarIp(i):
     r = random.randint(1,6)
 
-    if i >= 20 and i <= 30:
-        return '200.1.123.345'
+    return f'{random.radint(10,255)}.{random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}'
+
+def gerarRecurso(i):
+    r = random.randint(1,4)
+
+    if i >= 10 and i <= 20:
+        return '/login'
+    
+    if i >= 30 and i <= 35:
+        return '/admin'
+    
+    if i >= 40 and i <= 45:
+        return '/erro'
     
     if r == 1:
-        return '192.658.9.4'
+        return '/home'
     if r == 2:
-        return '192.688.7.5'
+        return '/produtos'
     if r == 3:
-        return '192.659.5.6'
-    if r == 4:
-        return '192.658.9.7'
-    if r == 5:
-        return '192.638.9.8'
+        return '/login'
     else:
-        return '192.658.9.49'
+        return '/home'
+
+
+def gerarMetodo(i):
+    r = random.randint(1,2)
+
+    if i >= 10 and i <= 20:
+        return 'POST'
+    
+    if r == 1:
+        return 'GET'
+    else:
+        return 'POST'
+
+
+def gerarStatus(i):
+    r = random.randint(1,4)
+
+    if i >= 10 and i <= 20:
+        return '403'
+    
+    if i >= 30 and i <= 35:
+        return '403'
+    
+    if i >= 40 and i <= 45:
+        return '404'
+    
+    if r == 1:
+        return '200'
+    if r == 2:
+        return '200'
+    if r == 3:
+        return '200'
+    else:
+        return '500'
+    
+    
+def gerarTempo (i):
     
